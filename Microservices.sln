@@ -9,8 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuctionService", "src\Aucti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Carsites", "Carsites", "{816FA4D0-4A17-4331-A522-EEFFBDC00748}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
 		docker-compose.yml = docker-compose.yml
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SearchService", "src\SearchService\SearchService.csproj", "{C3550001-8010-4FBA-8908-08A8DE10A4EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,6 +26,10 @@ Global
 		{5CA5B3FF-C2DB-4A7A-A0F4-714F39E20D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CA5B3FF-C2DB-4A7A-A0F4-714F39E20D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CA5B3FF-C2DB-4A7A-A0F4-714F39E20D10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3550001-8010-4FBA-8908-08A8DE10A4EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3550001-8010-4FBA-8908-08A8DE10A4EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3550001-8010-4FBA-8908-08A8DE10A4EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3550001-8010-4FBA-8908-08A8DE10A4EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -29,6 +37,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{45CD7D6D-081B-422D-A37B-5C04569BD7BC} = {816FA4D0-4A17-4331-A522-EEFFBDC00748}
 		{5CA5B3FF-C2DB-4A7A-A0F4-714F39E20D10} = {45CD7D6D-081B-422D-A37B-5C04569BD7BC}
+		{C3550001-8010-4FBA-8908-08A8DE10A4EB} = {45CD7D6D-081B-422D-A37B-5C04569BD7BC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1B734DC7-3B65-4026-89E8-967C31E0A512}

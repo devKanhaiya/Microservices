@@ -2,6 +2,7 @@
 using AuctionService.DTOs;
 using AuctionService.Entities;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,15 +20,36 @@ namespace AuctionService.Controllers
             _context = context;
             _mapper = mapper;
         }
-        [HttpGet]
-        public async Task<IActionResult> GetAllAuctions()
-        {
-            var auctions = await _context.Auctions
-                .Include(x => x.Item)
-                .OrderBy(x => x.Item.Make)
-                .ToListAsync();
+        //[HttpGet]
+        //public async Task<IActionResult> GetAllAuctions()
+        //{
+        //    var auctions = await _context.Auctions
+        //        .Include(x => x.Item)
+        //        .OrderBy(x => x.Item.Make)
+        //        .ToListAsync();
 
-            return Ok(_mapper.Map<List<AuctionDto>>(auctions));
+        //    return Ok(_mapper.Map<List<AuctionDto>>(auctions));
+        //}
+        [HttpGet]
+        public async Task<IActionResult> GetAllAuctions(string date)
+        {
+            var query = _context.Auctions.OrderBy(x => x.Item.Make).AsQueryable();
+
+            if (!string.IsNullOrEmpty(date))
+            {
+                query = query.Where(x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0).AsQueryable();
+            }
+
+            //    var auctions = await _context.Auctions
+            //    .Include(x => x.Item)
+            //    .OrderBy(x => x.Item.Make)
+            //    .ToListAsync();
+
+            //return Ok(_mapper.Map<List<AuctionDto>>(auctions));
+
+            var auctionDto = await query.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync();
+
+            return Ok(auctionDto);
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAuctionById(Guid id)
@@ -87,7 +109,7 @@ namespace AuctionService.Controllers
         public async Task<IActionResult> DeleteAuction(Guid id)
         {
             var auction = await _context.Auctions
-               .FindAsync(x => x.Id == id);
+               .FindAsync(id);
 
            
 

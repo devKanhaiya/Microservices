@@ -6,9 +6,19 @@
    ports:
     - 5432:5432
    volumes: 
-    - /var/lib/postresql/data 
+    - /var/lib/postresql/data
+  mongo:
+   image: mongo
+   environment:
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=mongopw
+   ports:
+    - 27017:27017
+   volumes:
+    - mongodata:/var/lib/mongodb/data
  volumes:
-  pdata:
+   pgdata:
+   mongodata:
     
   
    
